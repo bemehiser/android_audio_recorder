@@ -1,0 +1,33 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="file_manager_directory"
+        android:singleLine="true"
+        android:title="Directory"
+        android:summary="Directory for storing recordings"/>
+
+    <CheckBoxPreference
+        android:key="pref_student_check_box"
+        android:title="Student"
+        android:summary="An academy student"
+        android:defaultValue="false"/>
+
+    <!--<ListPreference-->
+        <!--android:key="pref_list_home_worlds"-->
+        <!--android:summary="A list of home worlds"-->
+        <!--android:title="Home Worlds"-->
+        <!--android:entries="@array/world_names"-->
+        <!--android:entryValues="@array/world_numbers"-->
+        <!--android:dependency="pref_student_check_box"/>-->
+
+    <!--<ListPreference-->
+        <!--android:key="pref_list_years_to_commission"-->
+        <!--android:summary="Number of Years to Commission"-->
+        <!--android:title="Years To Commission"-->
+        <!--android:entries="@array/years_to_commission"-->
+        <!--android:entryValues="@array/years_to_commission"-->
+        <!--android:dependency="pref_student_check_box"/>-->
+
+
+</PreferenceScreen>

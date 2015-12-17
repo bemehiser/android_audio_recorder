@@ -1,0 +1,84 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bruce.emehiser.audiorecorder.PlaybackFragment">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/playback_file_list"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/linearLayout"
+        android:choiceMode="singleChoice" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:00:00"
+            android:id="@+id/playback_current_position_text" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playback_seek_bar"
+            android:layout_weight="1"
+            android:indeterminate="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:00:00"
+            android:id="@+id/playback_total_length_text" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="@dimen/control_button_dimension"
+            android:layout_height="@dimen/control_button_dimension"
+            android:id="@+id/playback_play_pause_button"
+            android:layout_gravity="center_horizontal|bottom"
+            android:src="@drawable/music_play"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="Play Pause Button"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:layout_width="@dimen/control_button_dimension"
+            android:layout_height="@dimen/control_button_dimension"
+            android:id="@+id/playback_reverse_button"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/playback_play_pause_button"
+            android:layout_toStartOf="@+id/playback_play_pause_button"
+            android:src="@drawable/music_reverse" />
+
+        <ImageView
+            android:layout_width="@dimen/control_button_dimension"
+            android:layout_height="@dimen/control_button_dimension"
+            android:id="@+id/playback_forward_button"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/playback_play_pause_button"
+            android:layout_toEndOf="@+id/playback_play_pause_button"
+            android:src="@drawable/music_forward" />
+    </RelativeLayout>
+
+</RelativeLayout>
