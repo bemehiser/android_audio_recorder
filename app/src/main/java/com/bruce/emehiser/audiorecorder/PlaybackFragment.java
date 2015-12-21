@@ -61,6 +61,9 @@ public class PlaybackFragment extends Fragment implements View.OnClickListener, 
     private ImageView mReverseButton;
     private ImageView mForwardButton;
 
+    // handler used to update seek bar
+    private Handler mHandler;
+
 
     public PlaybackFragment() {
         // Required empty public constructor
@@ -78,6 +81,7 @@ public class PlaybackFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
+    @SuppressWarnings("HandlerLeak")
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_playback, container, false);
@@ -115,6 +119,33 @@ public class PlaybackFragment extends Fragment implements View.OnClickListener, 
         if(mArgumentFile != null) {
             startPlayback(mArgumentFile);
         }
+
+        // set up handler
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                int pos;
+                if(mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                    pos = mMediaPlayer.getCurrentPosition();
+                    // update seek bar and text view
+                    mSeekBar.setProgress(pos);
+                    mCurrentPositionText.setText(timeToHourMinuteSecond(pos));
+                    // clear and set next message and delay
+                    msg = obtainMessage(SHOW_PROGRESS);
+                    mHandler.sendMessageDelayed(msg, 1000 - (pos % 1000));
+                }
+                else {
+                    // clear messages
+                    removeMessages(SHOW_PROGRESS);
+                    // seek to zero
+                    mSeekBar.setProgress(0);
+                    // set time current time to zero
+                    mCurrentPositionText.setText(timeToHourMinuteSecond(0));
+                    // set button image
+                    mPlayPauseButton.setImageResource(R.drawable.music_play);
+                }
+            }
+        };
 
         return view;
     }
@@ -241,7 +272,7 @@ public class PlaybackFragment extends Fragment implements View.OnClickListener, 
     }
 
     /**
-     * Stop mMediaPlayer and release it
+     * music_stop mMediaPlayer and release it
      */
     private void stopPlayback() {
         // check for null
@@ -250,9 +281,12 @@ public class PlaybackFragment extends Fragment implements View.OnClickListener, 
             if(mMediaPlayer.isPlaying()) {
                 // stop playback
                 pausePlayback();
+                // stop the handler
+                mHandler.removeMessages(SHOW_PROGRESS);
             }
             // release player
             mMediaPlayer.release();
+            mMediaPlayer = null;
         }
     }
 
@@ -357,35 +391,16 @@ public class PlaybackFragment extends Fragment implements View.OnClickListener, 
         }
     }
 
-    /**
-     * This block of code will stop being called when the media player stops.
-     * Because , the handler and the activity
-     * it is attached to will be garbage collected
-     */
-    @SuppressWarnings("HandlerLeak")
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            int pos;
-            if(mMediaPlayer != null && mMediaPlayer.isPlaying()) {
-                pos = mMediaPlayer.getCurrentPosition();
-                // update seek bar and text view
-                mSeekBar.setProgress(pos);
-                mCurrentPositionText.setText(timeToHourMinuteSecond(pos));
-                // clear and set next message and delay
-                msg = obtainMessage(SHOW_PROGRESS);
-                mHandler.sendMessageDelayed(msg, 1000 - (pos % 1000));
-            }
-            else {
-                // clear messages
-                removeMessages(SHOW_PROGRESS);
-                // seek to zero
-                mSeekBar.setProgress(0);
-                // set time current time to zero
-                mCurrentPositionText.setText(timeToHourMinuteSecond(0));
-                // set button image
-                mPlayPauseButton.setImageResource(R.drawable.music_play);
-            }
-        }
-    };
+    @Override
+    public void onStop() {
+
+        // call to super
+        super.onStop();
+
+        // stop the playback
+        stopPlayback();
+
+        // release the handler
+        mHandler = null;
+    }
 }

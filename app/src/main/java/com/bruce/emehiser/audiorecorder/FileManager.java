@@ -69,4 +69,9 @@ public class FileManager {
         return new ArrayList<>();
     }
 
+    public File getOutputFile(String fileName) {
+
+        return new File(mFileManagerDirectory, fileName);
+    }
+
 }

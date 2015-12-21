@@ -22,6 +22,8 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, PlaybackFragment.OnFragmentInteractionListener {
 
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
+    public static final String PLAYBACK_FRAGMENT_TAG = "playback_fragment";
+    public static final String RECORDING_FRAGMENT_TAG = "recording_fragment";
     FragmentManager mFragmentManager;
 
     @Override
@@ -38,8 +40,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         PlaybackFragment playbackFragment = new PlaybackFragment();
 
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_frame, playbackFragment, "playback_fragment");
+        fragmentTransaction.add(R.id.main_frame, playbackFragment, PLAYBACK_FRAGMENT_TAG);
         fragmentTransaction.commit();
+
+        mFragmentManager.beginTransaction().replace(R.id.main_frame, new RecorderFragment(), RECORDING_FRAGMENT_TAG).commit();
 
         // floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -53,8 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // drawer layout
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -121,17 +124,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (id) {
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.nav_playback:
+                // display playback fragment
+                PlaybackFragment playbackFragment = (PlaybackFragment) mFragmentManager.findFragmentByTag(PLAYBACK_FRAGMENT_TAG);
+                if(playbackFragment == null) {
+                    playbackFragment = new PlaybackFragment();
+                }
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.main_frame, playbackFragment, PLAYBACK_FRAGMENT_TAG)
+                        .commit();
+                break;
+            case R.id.nav_record:
+                // display recorder fragment
+                RecorderFragment recorderFragment = (RecorderFragment) mFragmentManager.findFragmentByTag(RECORDING_FRAGMENT_TAG);
+                if(recorderFragment == null) {
+                    recorderFragment = new RecorderFragment();
+                }
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.main_frame, recorderFragment, RECORDING_FRAGMENT_TAG)
+                        .commit();
+                break;
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

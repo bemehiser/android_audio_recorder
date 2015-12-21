@@ -1,0 +1,67 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecorderFragment"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recorder_recording_title_edit_text"
+            android:singleLine="true"
+            android:inputType="textAutoComplete"
+            android:layout_alignParentTop="true"
+            android:hint="Title"
+            android:layout_toLeftOf="@+id/recorder_record_button"
+            android:layout_toStartOf="@+id/recorder_record_button" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/recorder_record_button"
+            android:src="@drawable/music_record"
+            android:layout_alignBottom="@+id/recorder_recording_title_edit_text"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recorder_recording_length_text"
+            android:id="@+id/recorder_recording_length_info_text_view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recorder_recording_length_text"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/recorder_recording_length_info_text_view"
+            android:layout_toEndOf="@+id/recorder_recording_length_info_text_view" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recorder_progress_bar"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+</LinearLayout>

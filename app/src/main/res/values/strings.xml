@@ -9,4 +9,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="play_pause_button_content_description">Play or Pause Recording</string>
+    <string name="recorder_file_title_field_text">Title</string>
+    <string name="recorder_recording_length_text">Recording Length</string>
 </resources>
