@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
     public static final String PLAYBACK_FRAGMENT_TAG = "playback_fragment";
     public static final String RECORDING_FRAGMENT_TAG = "recording_fragment";
+    public static final String EDIT_FRAGMENT_TAG = "edit_fragment";
     FragmentManager mFragmentManager;
 
     @Override
@@ -146,8 +147,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .replace(R.id.main_frame, recorderFragment, RECORDING_FRAGMENT_TAG)
                         .commit();
                 break;
-
-
+            case R.id.nav_edit:
+                // display the edit fragment
+                EditFragment editFragment = (EditFragment) mFragmentManager.findFragmentByTag(EDIT_FRAGMENT_TAG);
+                if(editFragment == null) {
+                    editFragment = new EditFragment();
+                }
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.main_frame, editFragment, EDIT_FRAGMENT_TAG)
+                        .commit();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

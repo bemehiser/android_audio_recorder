@@ -31,6 +31,8 @@ import java.util.List;
  *
  * This fragment can be used to play a {@link MediaFile}, and contains
  * a play pause button and seek control
+ *
+ * @author Bruce Emehiser
  */
 public class PlaybackFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, SeekBar.OnSeekBarChangeListener {
 

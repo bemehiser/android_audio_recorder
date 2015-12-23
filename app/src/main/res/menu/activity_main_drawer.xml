@@ -11,6 +11,10 @@
             android:icon="@drawable/music_microphone"
             android:title="New Recording" />
         <item
+            android:id="@+id/nav_edit"
+            android:icon="@drawable/music_waves"
+            android:title="Edit Recording" />
+        <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />

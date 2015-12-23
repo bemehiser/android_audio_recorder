@@ -69,7 +69,8 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/playback_play_pause_button"
             android:layout_toStartOf="@+id/playback_play_pause_button"
-            android:src="@drawable/music_reverse" />
+            android:src="@drawable/music_reverse"
+            android:contentDescription="Backward 10 Seconds" />
 
         <ImageView
             android:layout_width="@dimen/control_button_dimension"
@@ -78,7 +79,8 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/playback_play_pause_button"
             android:layout_toEndOf="@+id/playback_play_pause_button"
-            android:src="@drawable/music_forward" />
+            android:src="@drawable/music_forward"
+            android:contentDescription="Forward 10 Seconds" />
     </RelativeLayout>
 
 </RelativeLayout>

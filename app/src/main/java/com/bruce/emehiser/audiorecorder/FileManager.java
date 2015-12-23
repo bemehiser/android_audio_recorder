@@ -1,6 +1,7 @@
 package com.bruce.emehiser.audiorecorder;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -69,9 +70,32 @@ public class FileManager {
         return new ArrayList<>();
     }
 
+    /**
+     * Creates a new file in the File Manager directory
+     * If a file with the same name exists, it will be opened,
+     * and may be overwritten
+     * @param fileName The name for the new File
+     * @return The new File
+     */
     public File getOutputFile(String fileName) {
 
         return new File(mFileManagerDirectory, fileName);
+    }
+
+    /**
+     * Return a new file if it exists
+     * @param fileName The name of the requested file
+     * @return File with given name in the file manager directory
+     * @throws java.io.FileNotFoundException Thrown if file does not exist in file manager directory
+     */
+    public File getFile(String fileName) throws FileNotFoundException {
+
+        for(File file : mFileManagerDirectory.listFiles()) {
+            if(file.getName().compareTo(fileName) == 0) {
+                return file;
+            }
+        }
+        throw new FileNotFoundException("File " + fileName + " was not found in directory " + mFileManagerDirectoryName);
     }
 
 }
