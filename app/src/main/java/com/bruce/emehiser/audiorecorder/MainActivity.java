@@ -2,7 +2,6 @@ package com.bruce.emehiser.audiorecorder;
 
 import android.Manifest;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,13 +37,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mFragmentManager = getFragmentManager();
 
         // get a new playback fragment and attach it to the frame
-        PlaybackFragment playbackFragment = new PlaybackFragment();
+//        PlaybackFragment playbackFragment = new PlaybackFragment();
+//        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+//        fragmentTransaction.add(R.id.main_frame, playbackFragment, PLAYBACK_FRAGMENT_TAG);
+//        fragmentTransaction.commit();
 
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_frame, playbackFragment, PLAYBACK_FRAGMENT_TAG);
-        fragmentTransaction.commit();
+//        mFragmentManager.beginTransaction().replace(R.id.main_frame, new EditFragment(), EDIT_FRAGMENT_TAG).commit();
 
-        mFragmentManager.beginTransaction().replace(R.id.main_frame, new RecorderFragment(), RECORDING_FRAGMENT_TAG).commit();
+        // add a new fragment to the frame
+        mFragmentManager.beginTransaction()
+                .add(R.id.main_frame, new EditFragment(), EDIT_FRAGMENT_TAG)
+                .commit();
 
         // floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

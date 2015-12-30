@@ -1,24 +1,12 @@
 package com.bruce.emehiser.audiorecorder;
 
-import java.security.InvalidParameterException;
-
 /**
  * Created by Bruce Emehiser on 12/23/2015.
  *
  * Wrapper used to contain the information
- * for making a new track from a longer track
+ * about an audio track
  */
 public class Track {
-
-    /**
-     * Starting position of new track
-     */
-    private int mStartTime;
-
-    /**
-     * Ending position of new track
-     */
-    private int mEndTime;
 
     /**
      * Metadata for track
@@ -27,48 +15,78 @@ public class Track {
     private String mAlbum;
     private String mTitle;
     private String mGenre;
-    private String mYear;
+    private int mYear;
     private String mDescription;
+    private int mLength;
 
     /**
      * Default constructor
-     *
-     * @param startTimeInMills The starting time of the new track
      */
-    public Track(int startTimeInMills) {
+    public Track() {
 
-        if (startTimeInMills < 0) {
-            throw new InvalidParameterException("Start time cannot be less than zero");
-        }
-
-        // assign variables
-        mStartTime = startTimeInMills;
+        // all tracks are set to default
+        mArtist = "Unknown";
+        mAlbum = "Unknown";
+        mTitle = "Unknown";
+        mGenre = "Unknown";
+        mYear = 0;
+        mDescription = "Unknown";
+        mLength = 0;
     }
 
-    /**
-     * Add the position to the current track
-     * @param endTimeInMills Position of end cut
-     */
-    public void setEndPosition(int endTimeInMills) {
-
-        // track must have end time > 0
-        if(endTimeInMills < 0) {
-            throw new InvalidParameterException("End time cannot be less than zero");
-        }
-        // end position must be greater than start position
-        if(endTimeInMills <= mStartTime) {
-            throw new InvalidParameterException("End time must be greater than start time");
-        }
-
-        // assign variables
-        mEndTime = endTimeInMills;
+    public String getArtist() {
+        return mArtist;
     }
 
-    public int getStartTime() {
-        return mStartTime;
+    public void setArtist(String mArtist) {
+        this.mArtist = mArtist;
     }
 
-    public int getEndTime() {
-        return mEndTime;
+    public String getAlbum() {
+        return mAlbum;
+    }
+
+    public void setAlbum(String mAlbum) {
+        this.mAlbum = mAlbum;
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public String getGenre() {
+        return mGenre;
+    }
+
+    public void setGenre(String genre) {
+        mGenre = genre;
+    }
+
+    public int getYear() {
+        return mYear;
+    }
+
+    public void setYear(int year) {
+        mYear = year;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
+    }
+
+    public int getLength() {
+        return mLength;
+    }
+
+    public void setLength(int length) {
+        mLength = length;
     }
 }
