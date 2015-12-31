@@ -3,10 +3,52 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/track"
+    <EditText
+        android:inputType="textPersonName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:hint="Artist: Unknown"
+        android:id="@+id/track_artist" />
+
+    <EditText
+        android:inputType="textAutoComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Album: Unknown"
+        android:id="@+id/track_album" />
+
+    <EditText
+        android:inputType="textAutoComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title: Unknown"
+        android:id="@+id/track_title" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genre: Unknown"
+        android:id="@+id/track_genre" />
+
+    <EditText
+        android:inputType="date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year: Unknown"
+        android:id="@+id/track_year" />
+
+    <EditText
+        android:inputType="textAutoCorrect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comment:"
+        android:id="@+id/track_description" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Length"
+        android:id="@+id/track_length" />
 
     <TextView
         android:layout_width="match_parent"

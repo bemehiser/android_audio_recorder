@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * Track Array Adapter, used for making pretty looking tracks
  */
-public class TrackAdapter extends ArrayAdapter<Track> {
+public class TrackAdapter extends ArrayAdapter<ID3v1Tag> {
 
     static class ViewHolder {
         TextView artist;
@@ -27,12 +27,12 @@ public class TrackAdapter extends ArrayAdapter<Track> {
     }
 
     private final Context mContext;
-    private final ArrayList<Track> mTracks;
+    private final ArrayList<ID3v1Tag> mID3v1Tags;
 
-    public TrackAdapter(Context context, ArrayList<Track> tracks) {
-        super(context, -1, tracks);
+    public TrackAdapter(Context context, ArrayList<ID3v1Tag> ID3v1Tags) {
+        super(context, -1, ID3v1Tags);
         this.mContext = context;
-        this.mTracks = tracks;
+        this.mID3v1Tags = ID3v1Tags;
     }
 
     @Override
@@ -67,16 +67,16 @@ public class TrackAdapter extends ArrayAdapter<Track> {
         }
 
         // get the current track for this view
-        Track track = mTracks.get(position);
+        ID3v1Tag ID3v1Tag = mID3v1Tags.get(position);
 
         // set the data on the views
-        holder.artist.setText(track.getArtist());
-        holder.album.setText(track.getAlbum());
-        holder.title.setText(track.getTitle());
-        holder.genre.setText(track.getGenre());
-        holder.year.setText(String.valueOf(track.getYear()));
-        holder.length.setText(String.valueOf(track.getLength()));
-        holder.description.setText(track.getDescription());
+        holder.artist.setText(ID3v1Tag.getArtist());
+        holder.album.setText(ID3v1Tag.getAlbum());
+        holder.title.setText(ID3v1Tag.getTitle());
+        holder.genre.setText(ID3v1Tag.getGenre());
+        holder.year.setText(String.valueOf(ID3v1Tag.getYear()));
+//        holder.length.setText(String.valueOf(ID3v1Tag.getLength()));
+        holder.description.setText(ID3v1Tag.getComment());
 
         return convertView;
     }

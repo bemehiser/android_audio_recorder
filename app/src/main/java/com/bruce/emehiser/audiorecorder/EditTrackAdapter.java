@@ -77,10 +77,10 @@ public class EditTrackAdapter extends ArrayAdapter<EditTrack> {
         holder.artist.setText(editTrack.getArtist());
         holder.album.setText(editTrack.getAlbum());
         holder.title.setText(editTrack.getTitle());
-        holder.genre.setText(editTrack.getGenre());
-        holder.year.setText(String.valueOf(editTrack.getYear()));
+        holder.genre.setText(String.valueOf(editTrack.getGenre()));
+        holder.year.setText(editTrack.getYear());
         holder.length.setText(String.valueOf(editTrack.getLength()));
-        holder.description.setText(editTrack.getDescription());
+        holder.description.setText(editTrack.getComment());
         holder.startPosition.setText(String.valueOf(editTrack.getStartTime()));
         holder.endPosition.setText(String.valueOf(editTrack.getEndTime()));
 

@@ -8,7 +8,7 @@ import java.security.InvalidParameterException;
  * Edit Track used to contain the information necessary to
  * cut a section from a longer track
  */
-public class EditTrack extends Track {
+public class EditTrack extends ID3v1Tag {
 
     /**
      * Starting position of new track
@@ -19,6 +19,11 @@ public class EditTrack extends Track {
      * Ending position of new track
      */
     private int mEndTime;
+
+    /**
+     * Total length of track
+     */
+    private int mLength;
 
     /**
      * Default value constructor
@@ -67,5 +72,13 @@ public class EditTrack extends Track {
 
     public int getEndTime() {
         return mEndTime;
+    }
+
+    public int getLength() {
+        return mLength;
+    }
+
+    public void setLength(int length) {
+        mLength = length;
     }
 }

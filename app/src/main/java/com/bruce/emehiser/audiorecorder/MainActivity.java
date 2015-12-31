@@ -44,10 +44,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //        mFragmentManager.beginTransaction().replace(R.id.main_frame, new EditFragment(), EDIT_FRAGMENT_TAG).commit();
 
-        // add a new fragment to the frame
+        // add a new recording fragment to the frame
         mFragmentManager.beginTransaction()
-                .add(R.id.main_frame, new EditFragment(), EDIT_FRAGMENT_TAG)
+                .add(R.id.main_frame, new RecorderFragment(), RECORDING_FRAGMENT_TAG)
                 .commit();
+
+        // add a new edit fragment to the frame
+//        mFragmentManager.beginTransaction()
+//                .add(R.id.main_frame, new EditFragment(), EDIT_FRAGMENT_TAG)
+//                .commit();
 
         // floating action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
