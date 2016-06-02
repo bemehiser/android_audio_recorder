@@ -1,7 +1,6 @@
 # Audio Recorder
 
 Bruce Emehiser
-bemehiser@gmail.com
 2015 12 11
 
 This sound recorder is a project which I have been wanting to begin for some time.
